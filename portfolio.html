@@ -1,1103 +1,1854 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guvindu Punyajith Welikala — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #080810;
-    --bg2: #0d0d18;
-    --surface: #111120;
-    --card: #161625;
-    --border: #252540;
-    --accent: #ff6a1a;
-    --accent2: #2952d9;
-    --accent3: #ff9c5b;
-    --text: #ffffff;
-    --muted: #8888aa;
-    --dim: #333358;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guvindu Punyajith Welikala — Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080810;
+      --bg2: #0d0d18;
+      --surface: #111120;
+      --card: #161625;
+      --border: #252540;
+      --accent: #ff6a1a;
+      --accent2: #2952d9;
+      --accent3: #ff9c5b;
+      --text: #ffffff;
+      --muted: #8888aa;
+      --dim: #333358;
+    }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-    cursor: none;
-  }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-  /* CUSTOM CURSOR */
-  .cursor {
-    position: fixed; width: 12px; height: 12px;
-    background: var(--accent); border-radius: 50%;
-    pointer-events: none; z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
-    mix-blend-mode: difference;
-  }
-  .cursor-ring {
-    position: fixed; width: 40px; height: 40px;
-    border: 1px solid var(--accent); border-radius: 50%;
-    pointer-events: none; z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
-    opacity: 0.5;
-  }
-  body:hover .cursor { opacity: 1; }
+    /* CUSTOM CURSOR */
+    .cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+      mix-blend-mode: difference;
+    }
 
-  /* NOISE OVERLAY */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 9997; opacity: 0.4;
-  }
+    .cursor-ring {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
+      opacity: 0.5;
+    }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 1.2rem 3rem;
-    display: flex; justify-content: space-between; align-items: center;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    animation: slideDown 0.8s ease both;
-  }
-  @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    body:hover .cursor {
+      opacity: 1;
+    }
 
-  .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem; letter-spacing: 0.1em;
-    color: var(--accent);
-    text-decoration: none;
-  }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--muted); text-decoration: none;
-    position: relative; padding-bottom: 3px;
-    transition: color 0.3s;
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
-    background: var(--accent); transition: width 0.3s;
-  }
-  .nav-links a:hover { color: var(--accent); }
-  .nav-links a:hover::after { width: 100%; }
+    /* NOISE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9997;
+      opacity: 0.4;
+    }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: grid; grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 7rem 3rem 4rem;
-    position: relative; overflow: hidden;
-  }
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      animation: slideDown 0.8s ease both;
+    }
 
-  .hero-bg-shape {
-    position: absolute; top: -20%; right: -10%;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(41,82,217,0.15) 0%, transparent 70%);
-    border-radius: 50%; pointer-events: none;
-    animation: pulse 6s ease-in-out infinite;
-  }
-  .hero-bg-shape2 {
-    position: absolute; bottom: -10%; left: -5%;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(255,106,26,0.1) 0%, transparent 70%);
-    border-radius: 50%; pointer-events: none;
-    animation: pulse 8s ease-in-out infinite reverse;
-  }
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.7; }
-  }
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
 
-  .hero-left { position: relative; z-index: 2; }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
 
-  .hero-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 1.5rem;
-    display: flex; align-items: center; gap: 0.75rem;
-    animation: fadeUp 0.8s 0.3s both;
-  }
-  .hero-tag::before {
-    content: ''; display: inline-block; width: 30px; height: 1px; background: var(--accent);
-  }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-decoration: none;
+    }
 
-  .hero-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(4rem, 8vw, 7.5rem);
-    line-height: 0.9; letter-spacing: 0.02em;
-    animation: fadeUp 0.8s 0.5s both;
-  }
-  .hero-name span { color: var(--accent); display: block; }
-  .hero-name em { color: var(--accent2); font-style: normal; display: block; }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
 
-  .hero-desc {
-    margin: 2rem 0 2.5rem;
-    font-size: 1.05rem; line-height: 1.7;
-    color: var(--muted); max-width: 480px;
-    animation: fadeUp 0.8s 0.7s both;
-  }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 3px;
+      transition: color 0.3s;
+    }
 
-  .hero-cta {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-    animation: fadeUp 0.8s 0.9s both;
-  }
-  .btn {
-    padding: 0.9rem 2rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
-    border: none; cursor: none; text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: inline-flex; align-items: center; gap: 0.5rem;
-  }
-  .btn:hover { transform: translateY(-3px); }
-  .btn-primary {
-    background: var(--accent); color: #0a0a0f;
-    font-weight: 700;
-    box-shadow: 0 0 30px rgba(255,106,26,0.35); color: #fff;
-  }
-  .btn-primary:hover { box-shadow: 0 0 50px rgba(255,106,26,0.55); }
-  .btn-ghost {
-    background: transparent; color: var(--text);
-    border: 1px solid var(--border);
-  }
-  .btn-ghost:hover { border-color: var(--accent2); color: var(--accent2); }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
 
-  .hero-right {
-    position: relative; z-index: 2;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 2rem;
-    animation: fadeIn 1.2s 0.5s both;
-  }
+    .nav-links a:hover {
+      color: var(--accent);
+    }
 
-  .hero-stat-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1rem; width: 100%; max-width: 380px;
-  }
-  .stat-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 1.5rem;
-    position: relative; overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-  .stat-card::before {
-    content: ''; position: absolute;
-    inset: 0; background: linear-gradient(135deg, transparent 60%, rgba(255,106,26,0.07));
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .stat-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-  .stat-card:hover::before { opacity: 1; }
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.8rem; line-height: 1;
-    color: var(--accent);
-  }
-  .stat-num span { color: var(--accent2); font-size: 1.8rem; }
-  .stat-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; margin-top: 0.3rem; }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 7rem 3rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-shape {
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(41, 82, 217, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    .hero-bg-shape2 {
+      position: absolute;
+      bottom: -10%;
+      left: -5%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 106, 26, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: pulse 8s ease-in-out infinite reverse;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+      }
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: fadeUp 0.8s 0.3s both;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 8vw, 7.5rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      animation: fadeUp 0.8s 0.5s both;
+    }
+
+    .hero-name span {
+      color: var(--accent);
+      display: block;
+    }
+
+    .hero-name em {
+      color: var(--accent2);
+      font-style: normal;
+      display: block;
+    }
+
+    .hero-desc {
+      margin: 2rem 0 2.5rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 480px;
+      animation: fadeUp 0.8s 0.7s both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.9s both;
+    }
+
+    .btn {
+      padding: 0.9rem 2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      cursor: none;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0a0f;
+      font-weight: 700;
+      box-shadow: 0 0 30px rgba(255, 106, 26, 0.35);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 50px rgba(255, 106, 26, 0.55);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent2);
+      color: var(--accent2);
+    }
+
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      animation: fadeIn 1.2s 0.5s both;
+    }
+
+    .hero-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 60%, rgba(255, 106, 26, 0.07));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .stat-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .stat-card:hover::before {
+      opacity: 1;
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .stat-num span {
+      color: var(--accent2);
+      font-size: 1.8rem;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-top: 0.3rem;
+    }
 
 
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; } to { opacity: 1; }
-  }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
 
-  /* SECTIONS COMMON */
-  section { padding: 6rem 3rem; position: relative; }
-  section + section { border-top: 1px solid var(--border); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 0.75rem;
-    display: flex; align-items: center; gap: 0.75rem;
-  }
-  .section-label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--accent); }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
 
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    line-height: 1; letter-spacing: 0.02em;
-    margin-bottom: 3rem;
-  }
+      to {
+        opacity: 1;
+      }
+    }
 
-  /* REVEAL ANIMATION */
-  .reveal {
-    opacity: 0; transform: translateY(40px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* SECTIONS COMMON */
+    section {
+      padding: 6rem 3rem;
+      position: relative;
+    }
 
-  /* ABOUT */
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1.5fr;
-    gap: 4rem; align-items: start;
-  }
-  .about-left { position: sticky; top: 8rem; }
-  .about-photo-wrap {
-    position: relative; display: inline-block; width: 100%;
-  }
-  .about-photo-bg {
-    position: absolute; inset: 12px -12px -12px 12px;
-    background: var(--card); border: 1px solid var(--border); z-index: 0;
-  }
-  .about-photo {
-    position: relative; z-index: 1;
-    width: 100%; aspect-ratio: 3/4;
-    object-fit: cover;
-    border: 1px solid var(--border);
-    filter: grayscale(30%);
-  }
-  .about-photo-placeholder {
-    position: relative; z-index: 1;
-    width: 100%; aspect-ratio: 3/4;
-    background: var(--card);
-    border: 1px solid var(--border);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 1rem;
-  }
-  .about-photo-placeholder .initials {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 6rem; color: var(--dim);
-    line-height: 1;
-  }
-  .about-photo-placeholder .name-txt {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem; letter-spacing: 0.2em;
-    color: var(--dim); text-transform: uppercase;
-  }
-  .about-accent-bar {
-    position: absolute; top: 0; left: 0; width: 4px; height: 100%;
-    background: var(--accent); z-index: 2;
-  }
+    section+section {
+      border-top: 1px solid var(--border);
+    }
 
-  .about-text p {
-    font-size: 1.05rem; line-height: 1.85;
-    color: rgba(240,240,245,0.75);
-    margin-bottom: 1.5rem;
-  }
-  .about-text strong { color: var(--text); font-weight: 500; }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
 
-  .contact-row {
-    display: flex; flex-direction: column; gap: 0.75rem;
-    margin-top: 2rem;
-  }
-  .contact-item {
-    display: flex; align-items: center; gap: 0.75rem;
-    font-family: 'DM Mono', monospace; font-size: 0.78rem;
-    color: var(--muted);
-  }
-  .contact-item .icon {
-    width: 30px; height: 30px;
-    background: var(--card); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.85rem; flex-shrink: 0;
-  }
-  .contact-item a { color: var(--accent2); text-decoration: none; }
-  .contact-item a:hover { text-decoration: underline; }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
 
-  /* SKILLS */
-  .skills-outer { background: var(--bg2); }
-  .skills-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-  .skill-group {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 1.8rem;
-    position: relative; overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s;
-  }
-  .skill-group::after {
-    content: ''; position: absolute;
-    bottom: 0; left: 0; right: 0; height: 2px;
-    background: var(--accent); transform: scaleX(0);
-    transform-origin: left; transition: transform 0.4s;
-  }
-  .skill-group:hover { transform: translateY(-5px); border-color: transparent; }
-  .skill-group:hover::after { transform: scaleX(1); }
-  .skill-group:nth-child(2)::after { background: var(--accent2); }
-  .skill-group:nth-child(3)::after { background: var(--accent3); }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      margin-bottom: 3rem;
+    }
 
-  .skill-group-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--accent);
-    margin-bottom: 1.2rem;
-  }
-  .skill-group:nth-child(2) .skill-group-title { color: var(--accent2); }
-  .skill-group:nth-child(3) .skill-group-title { color: var(--accent3); }
+    /* REVEAL ANIMATION */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
 
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .skill-tag {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 0.3rem 0.7rem;
-    font-size: 0.78rem; color: var(--text);
-    transition: background 0.2s, border-color 0.2s, color 0.2s;
-  }
-  .skill-group:hover .skill-tag {
-    border-color: var(--dim);
-  }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  /* EXPERIENCE */
-  .timeline { position: relative; padding-left: 2rem; }
-  .timeline::before {
-    content: ''; position: absolute;
-    left: 0; top: 0; bottom: 0; width: 1px;
-    background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
-  }
-  .timeline-item {
-    position: relative; padding-bottom: 3rem; padding-left: 2rem;
-  }
-  .timeline-dot {
-    position: absolute; left: -2.35rem; top: 0.3rem;
-    width: 10px; height: 10px;
-    background: var(--accent); border-radius: 50%;
-    box-shadow: 0 0 15px rgba(255,106,26,0.6);
-  }
-  .timeline-year {
-    font-family: 'DM Mono', monospace; font-size: 0.7rem;
-    letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-  .timeline-company {
-    font-size: 1.3rem; font-weight: 500; margin-bottom: 0.3rem;
-  }
-  .timeline-role {
-    font-family: 'DM Mono', monospace; font-size: 0.78rem;
-    color: var(--muted); margin-bottom: 0.75rem;
-  }
-  .timeline-desc { color: rgba(240,240,245,0.65); line-height: 1.7; font-size: 0.95rem; }
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: start;
+    }
 
-  /* PROJECTS */
-  .projects-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    position: relative; overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s;
-    display: flex; flex-direction: column; gap: 1rem;
-  }
-  .project-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: var(--accent); transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s;
-  }
-  .project-card:nth-child(2)::before { background: var(--accent2); }
-  .project-card:nth-child(3)::before { background: var(--accent3); }
-  .project-card:nth-child(4)::before { background: var(--accent2); }
-  .project-card:nth-child(5)::before { background: var(--accent); }
-  .project-card:hover { transform: translateY(-6px); border-color: var(--dim); }
-  .project-card:hover::before { transform: scaleX(1); }
+    .about-left {
+      position: sticky;
+      top: 8rem;
+    }
 
-  .project-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3.5rem; color: var(--dim); line-height: 1;
-    position: absolute; top: 1rem; right: 1.5rem;
-    transition: color 0.3s;
-  }
-  .project-card:hover .project-num { color: rgba(255,106,26,0.25); }
+    .about-photo-wrap {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
 
-  .project-title { font-size: 1.15rem; font-weight: 500; line-height: 1.3; padding-right: 3rem; }
-  .project-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; flex: 1; }
-  .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .stack-tag {
-    font-family: 'DM Mono', monospace; font-size: 0.68rem;
-    padding: 0.2rem 0.5rem;
-    background: var(--surface); border: 1px solid var(--dim);
-    color: var(--muted);
-  }
+    .about-photo-bg {
+      position: absolute;
+      inset: 12px -12px -12px 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      z-index: 0;
+    }
 
-  /* ACHIEVEMENTS */
-  .achievements-outer { background: var(--bg2); }
-  .ach-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; }
+    .about-photo {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      filter: grayscale(30%);
+    }
 
-  .medal-list { display: flex; flex-direction: column; gap: 1rem; }
-  .medal-item {
-    display: flex; align-items: flex-start; gap: 1rem;
-    padding: 1.2rem; background: var(--card); border: 1px solid var(--border);
-    transition: border-color 0.3s, transform 0.3s;
-  }
-  .medal-item:hover { border-color: var(--dim); transform: translateX(6px); }
-  .medal-icon {
-    width: 36px; height: 36px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-  }
-  .medal-info { flex: 1; }
-  .medal-year {
-    font-family: 'DM Mono', monospace; font-size: 0.68rem;
-    color: var(--accent); letter-spacing: 0.1em;
-  }
-  .medal-event { font-size: 0.9rem; font-weight: 500; margin: 0.2rem 0; }
-  .medal-detail { font-size: 0.78rem; color: var(--muted); }
+    .about-photo-placeholder {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
 
-  .ach-right { display: flex; flex-direction: column; gap: 2rem; }
-  .ach-block { }
-  .ach-block-title {
-    font-family: 'DM Mono', monospace; font-size: 0.7rem;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent2); margin-bottom: 1rem;
-    padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
-  }
-  .ach-item-row {
-    display: flex; align-items: center; gap: 0.5rem;
-    padding: 0.5rem 0; border-bottom: 1px solid rgba(42,42,64,0.5);
-    font-size: 0.88rem; color: rgba(240,240,245,0.75);
-  }
-  .ach-item-row::before {
-    content: '→'; color: var(--accent2); font-size: 0.7rem;
-  }
+    .about-photo-placeholder .initials {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 6rem;
+      color: var(--dim);
+      line-height: 1;
+    }
 
-  /* CERTIFICATIONS */
-  .cert-card {
-    background: var(--card); border: 1px solid var(--border);
-    padding: 2rem; display: flex; gap: 1.5rem; align-items: flex-start;
-    transition: border-color 0.3s, transform 0.3s;
-    max-width: 700px;
-  }
-  .cert-card:hover { border-color: var(--accent); transform: translateX(6px); }
-  .cert-icon {
-    width: 50px; height: 50px; flex-shrink: 0;
-    background: rgba(255,106,26,0.1); border: 1px solid var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-  }
-  .cert-title { font-size: 1rem; font-weight: 500; margin-bottom: 0.3rem; }
-  .cert-org { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent); margin-bottom: 0.5rem; }
-  .cert-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .about-photo-placeholder .name-txt {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
 
-  /* SOFT SKILLS */
-  .soft-skills-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
-  .soft-skill-pill {
-    padding: 0.7rem 1.5rem;
-    background: var(--card); border: 1px solid var(--border);
-    font-size: 0.88rem;
-    transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.2s;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .soft-skill-pill::before { content: '✦'; font-size: 0.5rem; color: var(--accent); }
-  .soft-skill-pill:hover {
-    background: rgba(255,106,26,0.08);
-    border-color: var(--accent); color: var(--accent);
-    transform: translateY(-3px);
-  }
+    .about-accent-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent);
+      z-index: 2;
+    }
 
-  /* REFERENCES */
-  .ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .ref-card {
-    background: var(--card); border: 1px solid var(--border);
-    padding: 2rem; transition: border-color 0.3s, transform 0.3s;
-  }
-  .ref-card:hover { border-color: var(--accent2); transform: translateY(-4px); }
-  .ref-name { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.3rem; }
-  .ref-role { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent2); margin-bottom: 1rem; }
-  .ref-contact { display: flex; flex-direction: column; gap: 0.4rem; }
-  .ref-contact a { color: var(--muted); font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
-  .ref-contact a:hover { color: var(--accent2); }
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(240, 240, 245, 0.75);
+      margin-bottom: 1.5rem;
+    }
 
-  /* FOOTER */
-  footer {
-    padding: 4rem 3rem; text-align: center;
-    border-top: 1px solid var(--border);
-    background: var(--bg2);
-  }
-  .footer-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 4rem; letter-spacing: 0.05em;
-    color: var(--dim); margin-bottom: 1rem;
-  }
-  .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; }
-  .footer-links a {
-    font-family: 'DM Mono', monospace; font-size: 0.72rem;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--muted); text-decoration: none; transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--accent); }
-  .footer-copy { font-size: 0.78rem; color: var(--dim); }
+    .about-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
 
-  /* FLOATING GEOMETRIC */
-  .geo {
-    position: absolute; pointer-events: none;
-    border: 1px solid rgba(255,106,26,0.12);
-    animation: geoFloat 10s ease-in-out infinite;
-  }
-  .geo1 { width: 80px; height: 80px; top: 10%; right: 5%; animation-delay: 0s; }
-  .geo2 { width: 40px; height: 40px; top: 60%; right: 15%; animation-delay: 3s; border-color: rgba(41,82,217,0.18); transform: rotate(45deg); }
-  .geo3 { width: 60px; height: 60px; top: 30%; left: 3%; animation-delay: 6s; border-color: rgba(255,156,91,0.12); }
-  @keyframes geoFloat {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(10deg); }
-  }
+    .contact-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
 
-  /* RUNNING TEXT */
-  .marquee-wrap {
-    overflow: hidden; background: var(--accent); padding: 0.75rem 0;
-    border-top: 1px solid transparent; border-bottom: 1px solid transparent;
-  }
-  .marquee-inner {
-    display: flex; white-space: nowrap;
-    animation: marquee 25s linear infinite;
-  }
-  .marquee-text {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1rem; letter-spacing: 0.15em;
-    color: #0a0a0f; padding: 0 2rem;
-  }
-  .marquee-dot { color: rgba(10,10,15,0.4); }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
 
-  /* EDUCATION */
-  .edu-grid { display: flex; flex-direction: column; gap: 1.5rem; }
-  .edu-card {
-    background: var(--card); border: 1px solid var(--border);
-    padding: 1.8rem 2rem;
-    display: grid; grid-template-columns: auto 1fr;
-    gap: 1.5rem; align-items: start;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-  .edu-card:hover { border-color: var(--accent); transform: translateX(6px); }
-  .edu-year {
-    font-family: 'DM Mono', monospace; font-size: 0.72rem;
-    color: var(--muted); min-width: 60px; padding-top: 0.3rem;
-  }
-  .edu-institution { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.3rem; }
-  .edu-degree { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--accent); margin-bottom: 0.5rem; }
-  .edu-detail { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+    .contact-item .icon {
+      width: 30px;
+      height: 30px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
 
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.5rem; }
-    .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 4rem; }
-    .hero-right { display: none; }
-    section { padding: 4rem 1.5rem; }
-    .about-grid { grid-template-columns: 1fr; }
-    .about-left { position: static; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .ach-layout { grid-template-columns: 1fr; }
-    .ref-grid { grid-template-columns: 1fr; }
-    .hero-name { font-size: 3.5rem; }
-  }
-</style>
+    .contact-item a {
+      color: var(--accent2);
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* SKILLS */
+    .skills-outer {
+      background: var(--bg2);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .skill-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .skill-group::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+
+    .skill-group:hover {
+      transform: translateY(-5px);
+      border-color: transparent;
+    }
+
+    .skill-group:hover::after {
+      transform: scaleX(1);
+    }
+
+    .skill-group:nth-child(2)::after {
+      background: var(--accent2);
+    }
+
+    .skill-group:nth-child(3)::after {
+      background: var(--accent3);
+    }
+
+    .skill-group-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-group:nth-child(2) .skill-group-title {
+      color: var(--accent2);
+    }
+
+    .skill-group:nth-child(3) .skill-group-title {
+      color: var(--accent3);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.7rem;
+      font-size: 0.78rem;
+      color: var(--text);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .skill-group:hover .skill-tag {
+      border-color: var(--dim);
+    }
+
+    /* EXPERIENCE */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 3rem;
+      padding-left: 2rem;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2.35rem;
+      top: 0.3rem;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(255, 106, 26, 0.6);
+    }
+
+    .timeline-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-company {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-role {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-desc {
+      color: rgba(240, 240, 245, 0.65);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+
+    .project-card:nth-child(2)::before {
+      background: var(--accent2);
+    }
+
+    .project-card:nth-child(3)::before {
+      background: var(--accent3);
+    }
+
+    .project-card:nth-child(4)::before {
+      background: var(--accent2);
+    }
+
+    .project-card:nth-child(5)::before {
+      background: var(--accent);
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--dim);
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: var(--dim);
+      line-height: 1;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .project-card:hover .project-num {
+      color: rgba(255, 106, 26, 0.25);
+    }
+
+    .project-title {
+      font-size: 1.15rem;
+      font-weight: 500;
+      line-height: 1.3;
+      padding-right: 3rem;
+    }
+
+    .project-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .stack-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      padding: 0.2rem 0.5rem;
+      background: var(--surface);
+      border: 1px solid var(--dim);
+      color: var(--muted);
+    }
+
+    /* ACHIEVEMENTS */
+    .achievements-outer {
+      background: var(--bg2);
+    }
+
+    .ach-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+    }
+
+    .medal-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .medal-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .medal-item:hover {
+      border-color: var(--dim);
+      transform: translateX(6px);
+    }
+
+    .medal-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .medal-info {
+      flex: 1;
+    }
+
+    .medal-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    .medal-event {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin: 0.2rem 0;
+    }
+
+    .medal-detail {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .ach-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .ach-block {}
+
+    .ach-block-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ach-item-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(42, 42, 64, 0.5);
+      font-size: 0.88rem;
+      color: rgba(240, 240, 245, 0.75);
+    }
+
+    .ach-item-row::before {
+      content: '→';
+      color: var(--accent2);
+      font-size: 0.7rem;
+    }
+
+    /* CERTIFICATIONS */
+    .cert-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      transition: border-color 0.3s, transform 0.3s;
+      max-width: 700px;
+    }
+
+    .cert-card:hover {
+      border-color: var(--accent);
+      transform: translateX(6px);
+    }
+
+    .cert-icon {
+      width: 50px;
+      height: 50px;
+      flex-shrink: 0;
+      background: rgba(255, 106, 26, 0.1);
+      border: 1px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .cert-title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .cert-org {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .cert-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* SOFT SKILLS */
+    .soft-skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .soft-skill-pill {
+      padding: 0.7rem 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      font-size: 0.88rem;
+      transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .soft-skill-pill::before {
+      content: '✦';
+      font-size: 0.5rem;
+      color: var(--accent);
+    }
+
+    .soft-skill-pill:hover {
+      background: rgba(255, 106, 26, 0.08);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    /* REFERENCES */
+    .ref-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .ref-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .ref-card:hover {
+      border-color: var(--accent2);
+      transform: translateY(-4px);
+    }
+
+    .ref-name {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .ref-role {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent2);
+      margin-bottom: 1rem;
+    }
+
+    .ref-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .ref-contact a {
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .ref-contact a:hover {
+      color: var(--accent2);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 4rem 3rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      background: var(--bg2);
+    }
+
+    .footer-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      letter-spacing: 0.05em;
+      color: var(--dim);
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--dim);
+    }
+
+    /* ACHIEVEMENT PHOTO GALLERY */
+    .ach-photo-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .ach-photo-item {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .ach-photo-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+    .ach-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      filter: grayscale(20%);
+      transition: filter 0.4s, transform 0.4s;
+    }
+    .ach-photo-item:hover .ach-photo {
+      filter: grayscale(0%);
+      transform: scale(1.04);
+    }
+    .ach-photo-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.5rem 0.75rem;
+      background: linear-gradient(to top, rgba(8,8,16,0.9), transparent);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* FLOATING GEOMETRIC */
+    .geo {
+      position: absolute;
+      pointer-events: none;
+      border: 1px solid rgba(255, 106, 26, 0.12);
+      animation: geoFloat 10s ease-in-out infinite;
+    }
+
+    .geo1 {
+      width: 80px;
+      height: 80px;
+      top: 10%;
+      right: 5%;
+      animation-delay: 0s;
+    }
+
+    .geo2 {
+      width: 40px;
+      height: 40px;
+      top: 60%;
+      right: 15%;
+      animation-delay: 3s;
+      border-color: rgba(41, 82, 217, 0.18);
+      transform: rotate(45deg);
+    }
+
+    .geo3 {
+      width: 60px;
+      height: 60px;
+      top: 30%;
+      left: 3%;
+      animation-delay: 6s;
+      border-color: rgba(255, 156, 91, 0.12);
+    }
+
+    @keyframes geoFloat {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-20px) rotate(10deg);
+      }
+    }
+
+    /* RUNNING TEXT */
+    .marquee-wrap {
+      overflow: hidden;
+      background: var(--accent);
+      padding: 0.75rem 0;
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid transparent;
+    }
+
+    .marquee-inner {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 25s linear infinite;
+    }
+
+    .marquee-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      color: #0a0a0f;
+      padding: 0 2rem;
+    }
+
+    .marquee-dot {
+      color: rgba(10, 10, 15, 0.4);
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* EDUCATION */
+    .edu-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .edu-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1.8rem 2rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .edu-card:hover {
+      border-color: var(--accent);
+      transform: translateX(6px);
+    }
+
+    .edu-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      min-width: 60px;
+      padding-top: 0.3rem;
+    }
+
+    .edu-institution {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .edu-degree {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-detail {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 6rem 1.5rem 4rem;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-left {
+        position: static;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ach-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .ref-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-name {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#">GPW</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#achievements">Achievements</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">GPW</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-bg-shape"></div>
-  <div class="hero-bg-shape2"></div>
-  <div class="geo geo1"></div>
-  <div class="geo geo2"></div>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg-shape"></div>
+    <div class="hero-bg-shape2"></div>
+    <div class="geo geo1"></div>
+    <div class="geo geo2"></div>
 
-  <div class="hero-left">
-    <div class="hero-tag">IT Student · National Athlete</div>
-    <h1 class="hero-name">
-      Guvindu
-      <span>Punyajith</span>
-      <em>Welikala</em>
-    </h1>
-    <p class="hero-desc">BSc (Hons) Information Technology student at SLIIT, national-level Hammer Throw athlete, and software developer — building meaningful tech while chasing gold.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#projects">View Projects ↓</a>
-      <a class="btn btn-ghost" href="mailto:guvindu.welikala@gmail.com">Get In Touch</a>
+    <div class="hero-left">
+      <div class="hero-tag">IT Student · National Athlete</div>
+      <h1 class="hero-name">
+        Guvindu
+        <span>Punyajith</span>
+        <em>Welikala</em>
+      </h1>
+      <p class="hero-desc">BSc (Hons) Information Technology student at SLIIT, national-level Hammer Throw athlete, and
+        software developer — building meaningful tech while chasing gold.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#projects">View Projects ↓</a>
+        <a class="btn btn-ghost" href="mailto:guvindu.welikala@gmail.com">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-stat-grid">
+        <div class="stat-card reveal">
+          <div class="stat-num">6<span>th</span></div>
+          <div class="stat-label">National Hammer Throw Ranking 2026</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-num">5<span>+</span></div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-num">🥇</div>
+          <div class="stat-label">Gold — U23 Hammer Throw 2024</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-num">10<span>+</span></div>
+          <div class="stat-label">Technologies in Stack</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-inner">
+      <span class="marquee-text">Software Developer <span class="marquee-dot">✦</span></span>
+      <span class="marquee-text">National Athlete <span class="marquee-dot">✦</span></span>
+      <span class="marquee-text">IT Student at SLIIT <span class="marquee-dot">✦</span></span>
+      <span class="marquee-text">Gold Medalist <span class="marquee-dot">✦</span></span>
+      <span class="marquee-text">Full Stack Developer <span class="marquee-dot">✦</span></span>
+      <span class="marquee-text">MongoDB Certified <span class="marquee-dot">✦</span></span>
+      <span class="marquee-text">Vice Captain · SLIIT Athletics <span class="marquee-dot">✦</span></span>
+      <span class="marquee-text">Software Developer <span class="marquee-dot">✦</span></span>
+      <span class="marquee-text">National Athlete <span class="marquee-dot">✦</span></span>
+      <span class="marquee-text">IT Student at SLIIT <span class="marquee-dot">✦</span></span>
+      <span class="marquee-text">Gold Medalist <span class="marquee-dot">✦</span></span>
+      <span class="marquee-text">Full Stack Developer <span class="marquee-dot">✦</span></span>
+      <span class="marquee-text">MongoDB Certified <span class="marquee-dot">✦</span></span>
+      <span class="marquee-text">Vice Captain · SLIIT Athletics <span class="marquee-dot">✦</span></span>
     </div>
   </div>
 
-  <div class="hero-right">
-    <div class="hero-stat-grid">
-      <div class="stat-card reveal">
-        <div class="stat-num">6<span>th</span></div>
-        <div class="stat-label">National Hammer Throw Ranking 2026</div>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <div class="about-photo-wrap">
+          <div class="about-photo-bg"></div>
+          <div class="about-accent-bar"></div>
+          <img src="images/me1.jpeg" alt="Guvindu Punyajith Welikala" class="about-photo">
+        </div>
       </div>
-      <div class="stat-card reveal">
-        <div class="stat-num">5<span>+</span></div>
-        <div class="stat-label">Projects Completed</div>
-      </div>
-      <div class="stat-card reveal">
-        <div class="stat-num">🥇</div>
-        <div class="stat-label">Gold — U23 Hammer Throw 2024</div>
-      </div>
-      <div class="stat-card reveal">
-        <div class="stat-num">10<span>+</span></div>
-        <div class="stat-label">Technologies in Stack</div>
-      </div>
-    </div>
-  </div>
+      <div class="about-text">
+        <div class="section-label reveal">01 — About</div>
+        <h2 class="section-title reveal">The Story<br>So Far.</h2>
+        <p class="reveal">I'm <strong>Guvindu Punyajith Welikala</strong> — an IT student at SLIIT and a national-level
+          Hammer Throw athlete. I believe discipline forged on the track translates directly into how I approach
+          software: with precision, persistence, and a hunger for improvement.</p>
+        <p class="reveal">Currently pursuing my BSc (Hons) in Information Technology (2023–2027), I've built projects
+          across mobile, web, and backend systems — from Java-based music stores to MERN-stack sports management
+          platforms tested end-to-end with Playwright.</p>
+        <p class="reveal">Beyond code, I've served as <strong>Vice Captain</strong> of SLIIT Athletics, hosting the
+          SLIIT MOMENTUM 2025 and RELAY CARNIVAL 2026 inter-university championships. Leadership isn't a title — it's
+          the habit of showing up.</p>
 
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-inner">
-    <span class="marquee-text">Software Developer <span class="marquee-dot">✦</span></span>
-    <span class="marquee-text">National Athlete <span class="marquee-dot">✦</span></span>
-    <span class="marquee-text">IT Student at SLIIT <span class="marquee-dot">✦</span></span>
-    <span class="marquee-text">Gold Medalist <span class="marquee-dot">✦</span></span>
-    <span class="marquee-text">Full Stack Developer <span class="marquee-dot">✦</span></span>
-    <span class="marquee-text">MongoDB Certified <span class="marquee-dot">✦</span></span>
-    <span class="marquee-text">Vice Captain · SLIIT Athletics <span class="marquee-dot">✦</span></span>
-    <span class="marquee-text">Software Developer <span class="marquee-dot">✦</span></span>
-    <span class="marquee-text">National Athlete <span class="marquee-dot">✦</span></span>
-    <span class="marquee-text">IT Student at SLIIT <span class="marquee-dot">✦</span></span>
-    <span class="marquee-text">Gold Medalist <span class="marquee-dot">✦</span></span>
-    <span class="marquee-text">Full Stack Developer <span class="marquee-dot">✦</span></span>
-    <span class="marquee-text">MongoDB Certified <span class="marquee-dot">✦</span></span>
-    <span class="marquee-text">Vice Captain · SLIIT Athletics <span class="marquee-dot">✦</span></span>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-grid">
-    <div class="about-left reveal">
-      <div class="about-photo-wrap">
-        <div class="about-photo-bg"></div>
-        <div class="about-accent-bar"></div>
-        <div class="about-photo-placeholder">
-          <div class="initials">GPW</div>
-          <div class="name-txt">Guvindu · Punyajith · Welikala</div>
-        </div>
-      </div>
-    </div>
-    <div class="about-text">
-      <div class="section-label reveal">01 — About</div>
-      <h2 class="section-title reveal">The Story<br>So Far.</h2>
-      <p class="reveal">I'm <strong>Guvindu Punyajith Welikala</strong> — an IT student at SLIIT and a national-level Hammer Throw athlete. I believe discipline forged on the track translates directly into how I approach software: with precision, persistence, and a hunger for improvement.</p>
-      <p class="reveal">Currently pursuing my BSc (Hons) in Information Technology (2023–2027), I've built projects across mobile, web, and backend systems — from Java-based music stores to MERN-stack sports management platforms tested end-to-end with Playwright.</p>
-      <p class="reveal">Beyond code, I've served as <strong>Vice Captain</strong> of SLIIT Athletics, hosting the SLIIT MOMENTUM 2025 and RELAY CARNIVAL 2026 inter-university championships. Leadership isn't a title — it's the habit of showing up.</p>
-
-      <div class="contact-row reveal" id="contact">
-        <div class="contact-item">
-          <div class="icon">📧</div>
-          <a href="mailto:guvindu.welikala@gmail.com">guvindu.welikala@gmail.com</a>
-        </div>
-        <div class="contact-item">
-          <div class="icon">📱</div>
-          <span>+94 705 687 853</span>
-        </div>
-        <div class="contact-item">
-          <div class="icon">📍</div>
-          <span>Kottawa, Sri Lanka</span>
-        </div>
-        <div class="contact-item">
-          <div class="icon">💼</div>
-          <a href="https://www.linkedin.com/in/guvinduwelikala" target="_blank">linkedin.com/in/guvinduwelikala</a>
-        </div>
-        <div class="contact-item">
-          <div class="icon">🐙</div>
-          <a href="https://github.com/guvinduwelikala" target="_blank">github.com/guvinduwelikala</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section>
-  <div class="section-label reveal">02 — Education</div>
-  <h2 class="section-title reveal">Academic<br>Journey.</h2>
-  <div class="edu-grid">
-    <div class="edu-card reveal">
-      <div class="edu-year">2023–2027</div>
-      <div>
-        <div class="edu-institution">Sri Lanka Institute of Information Technology (SLIIT)</div>
-        <div class="edu-degree">BSc (Hons) in Information Technology · Currently Pursuing</div>
-        <div class="edu-detail">Specializing in Information Technology. Active member and Vice Captain of the Athletics team.</div>
-      </div>
-    </div>
-    <div class="edu-card reveal">
-      <div class="edu-year">2021</div>
-      <div>
-        <div class="edu-institution">Dharmapala Vidyalaya Pannipitiya</div>
-        <div class="edu-degree">A/L — Technology Stream</div>
-        <div class="edu-detail">3C's in Technology stream. Selected for Bachelor's Degree in ICT at University of Vavuniya (2022).</div>
-      </div>
-    </div>
-    <div class="edu-card reveal">
-      <div class="edu-year">2018</div>
-      <div>
-        <div class="edu-institution">Dharmapala Vidyalaya Kottawa</div>
-        <div class="edu-degree">O/L — 5A's | 3B's | 1C</div>
-        <div class="edu-detail">Completed Dhamma school final examination. Awarded Colors for Athletics and Rugby.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section class="skills-outer" id="skills">
-  <div class="section-label reveal">03 — Skills</div>
-  <h2 class="section-title reveal">The Toolkit.</h2>
-  <div class="skills-grid">
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Web & Programming</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Java</span>
-        <span class="skill-tag">JavaScript</span>
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">C++</span>
-        <span class="skill-tag">C</span>
-        <span class="skill-tag">C#</span>
-        <span class="skill-tag">HTML</span>
-        <span class="skill-tag">CSS</span>
-        <span class="skill-tag">React.js</span>
-        <span class="skill-tag">Node.js</span>
-        <span class="skill-tag">Kotlin</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Frameworks & Tools</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Spring Boot</span>
-        <span class="skill-tag">Express.js</span>
-        <span class="skill-tag">Tailwind CSS</span>
-        <span class="skill-tag">Bootstrap</span>
-        <span class="skill-tag">Postman</span>
-        <span class="skill-tag">Playwright</span>
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">VS Code</span>
-        <span class="skill-tag">Android Studio</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Databases & Other</div>
-      <div class="skill-tags">
-        <span class="skill-tag">MongoDB</span>
-        <span class="skill-tag">MySQL</span>
-        <span class="skill-tag">Figma</span>
-        <span class="skill-tag">R Studio</span>
-        <span class="skill-tag">Jira</span>
-        <span class="skill-tag">Trello</span>
-        <span class="skill-tag">GitHub</span>
-        <span class="skill-tag">MS Office</span>
-        <span class="skill-tag">Wasatch</span>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin-top: 3rem;">
-    <div class="section-label reveal" style="margin-bottom: 1.5rem;">Soft Skills</div>
-    <div class="soft-skills-grid">
-      <span class="soft-skill-pill reveal">Strong Problem-Solving</span>
-      <span class="soft-skill-pill reveal">Analytical Thinking</span>
-      <span class="soft-skill-pill reveal">Stakeholder Communication</span>
-      <span class="soft-skill-pill reveal">Teamwork</span>
-      <span class="soft-skill-pill reveal">QA Mindset</span>
-      <span class="soft-skill-pill reveal">Time Management</span>
-      <span class="soft-skill-pill reveal">Task Prioritization</span>
-      <span class="soft-skill-pill reveal">Adaptability</span>
-      <span class="soft-skill-pill reveal">Leadership</span>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-label reveal">04 — Experience</div>
-  <h2 class="section-title reveal">Where I've<br>Worked.</h2>
-  <div class="timeline">
-    <div class="timeline-item reveal">
-      <div class="timeline-dot"></div>
-      <div class="timeline-year">Jan 2026 — Present</div>
-      <div class="timeline-company">Bluechip Technical Services</div>
-      <div class="timeline-role">System i & Network Intern</div>
-      <div class="timeline-desc">Gaining hands-on experience with IBM System i infrastructure and networking, supporting enterprise-level technical operations and system administration tasks.</div>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-dot" style="background: var(--accent2); box-shadow: 0 0 15px rgba(41,82,217,0.6);"></div>
-      <div class="timeline-year">Jun 2022</div>
-      <div class="timeline-company">VN Sports Dressings</div>
-      <div class="timeline-role">Printing Technician</div>
-      <div class="timeline-desc">Handled garment and equipment printing operations using Wasatch software, ensuring accurate color management and quality output for sports merchandise.</div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-label reveal">05 — Projects</div>
-  <h2 class="section-title reveal">Things I've<br>Built.</h2>
-  <div class="projects-grid">
-    <div class="project-card reveal">
-      <div class="project-num">01</div>
-      <div class="project-title">ToneGallery Online Music Store</div>
-      <div class="project-desc">A Java-based music product catalog system featuring an admin panel, search functionality, and full payment simulation. Built with a clean layered architecture.</div>
-      <div class="project-stack">
-        <span class="stack-tag">Java</span>
-        <span class="stack-tag">SQL</span>
-        <span class="stack-tag">Bootstrap</span>
-      </div>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-num">02</div>
-      <div class="project-title">Finovate: Financial Tracking App</div>
-      <div class="project-desc">A mobile application to track expenses, categorize income streams, and generate financial summaries — helping users gain clarity over their personal finances.</div>
-      <div class="project-stack">
-        <span class="stack-tag">Android Studio</span>
-        <span class="stack-tag">Kotlin</span>
-      </div>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-num">03</div>
-      <div class="project-title">Employee Management System</div>
-      <div class="project-desc">A full-stack system for tracking employee productivity with transparent performance monitoring dashboards for managers and staff alike.</div>
-      <div class="project-stack">
-        <span class="stack-tag">React</span>
-        <span class="stack-tag">Tailwind CSS</span>
-        <span class="stack-tag">Express</span>
-        <span class="stack-tag">MongoDB</span>
-      </div>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-num">04</div>
-      <div class="project-title">UniSport: Sports Council Management</div>
-      <div class="project-desc">A comprehensive university sports management application for reservations, schedules, and e-commerce — validated by end-to-end testing with Playwright.</div>
-      <div class="project-stack">
-        <span class="stack-tag">MERN</span>
-        <span class="stack-tag">Playwright</span>
-      </div>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-num">05</div>
-      <div class="project-title">Facility & Equipment Management</div>
-      <div class="project-desc">A role-based campus platform to manage equipment inventory, facility reservations, and support ticket workflows. Containerized with Docker for scalability.</div>
-      <div class="project-stack">
-        <span class="stack-tag">Java</span>
-        <span class="stack-tag">React</span>
-        <span class="stack-tag">Docker</span>
-      </div>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-num">06</div>
-      <div class="project-title">YouTube Shorts Automation Pipeline</div>
-      <div class="project-desc">An end-to-end automation pipeline engineered to handle script generation, video creation, and publication of YouTube Shorts — fully hands-free.</div>
-      <div class="project-stack">
-        <span class="stack-tag">Python</span>
-        <span class="stack-tag">YouTube API</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ACHIEVEMENTS -->
-<section class="achievements-outer" id="achievements">
-  <div class="section-label reveal">06 — Achievements</div>
-  <h2 class="section-title reveal">On the<br>Podium.</h2>
-  <div class="ach-layout">
-    <div class="medal-list">
-      <div class="medal-item reveal">
-        <div class="medal-icon">🥇</div>
-        <div class="medal-info">
-          <div class="medal-year">2025</div>
-          <div class="medal-event">Gold Medal — Hammer Throw (Open)</div>
-          <div class="medal-detail">National Sports Festival · Western Province Meet</div>
-        </div>
-      </div>
-      <div class="medal-item reveal">
-        <div class="medal-icon">🥇</div>
-        <div class="medal-info">
-          <div class="medal-year">2024</div>
-          <div class="medal-event">Gold Medal — Hammer Throw (U23)</div>
-          <div class="medal-detail">Junior National Athletic Championship</div>
-        </div>
-      </div>
-      <div class="medal-item reveal">
-        <div class="medal-icon">🥈</div>
-        <div class="medal-info">
-          <div class="medal-year">2023</div>
-          <div class="medal-event">Silver Medal — Hammer Throw (U23)</div>
-          <div class="medal-detail">Junior National Athletic Championship</div>
-        </div>
-      </div>
-      <div class="medal-item reveal">
-        <div class="medal-icon">🥈</div>
-        <div class="medal-info">
-          <div class="medal-year">2022</div>
-          <div class="medal-event">Silver Medal — Hammer Throw (U23)</div>
-          <div class="medal-detail">Junior National Athletic Championship</div>
-        </div>
-      </div>
-      <div class="medal-item reveal">
-        <div class="medal-icon">🥉</div>
-        <div class="medal-info">
-          <div class="medal-year">2024</div>
-          <div class="medal-event">Bronze Medal — Hammer Throw (Open)</div>
-          <div class="medal-detail">National Sports Festival · Western Province Meet</div>
-        </div>
-      </div>
-      <div class="medal-item reveal">
-        <div class="medal-icon">🥉</div>
-        <div class="medal-info">
-          <div class="medal-year">2019</div>
-          <div class="medal-event">Bronze Medal — Hammer Throw (U18)</div>
-          <div class="medal-detail">Junior National Athletic Championship</div>
-        </div>
-      </div>
-      <div class="medal-item reveal">
-        <div class="medal-icon">🥉</div>
-        <div class="medal-info">
-          <div class="medal-year">2019</div>
-          <div class="medal-event">Bronze Medal — Discus Throw</div>
-          <div class="medal-detail">National Youth Sports Festival</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ach-right">
-      <div class="ach-block reveal">
-        <div class="ach-block-title">University Level</div>
-        <div class="ach-item-row">Colors for Athletics — 2023, 2024, 2025</div>
-        <div class="ach-item-row">Best Player · Track & Field — 2024 & 2025</div>
-        <div class="ach-item-row">Multiple medals — Inter-University Championships</div>
-        <div class="ach-item-row">Vice Captain — SLIIT Athletics 2025</div>
-        <div class="ach-item-row">Host · SLIIT MOMENTUM 2025 inter-university championship</div>
-        <div class="ach-item-row">Host · SLIIT RELAY CARNIVAL 2026 championship</div>
-      </div>
-      <div class="ach-block reveal">
-        <div class="ach-block-title">School Level</div>
-        <div class="ach-item-row">Colors for Athletics — 2019, 2020, 2022, 2023</div>
-        <div class="ach-item-row">Colors for Rugby — 2019</div>
-        <div class="ach-item-row">Selected — National Sports Festival (Western Province)</div>
-      </div>
-      <div class="ach-block reveal">
-        <div class="ach-block-title">Current Ranking</div>
-        <div style="padding: 1.5rem; background: var(--card); border: 1px solid var(--border); margin-top: 0.5rem; text-align: center;">
-          <div style="font-family:'Bebas Neue',sans-serif; font-size: 5rem; line-height:1; color: var(--accent);">6<sup style="font-size:2rem;">th</sup></div>
-          <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--muted); letter-spacing:0.1em;">Senior National Ranking · 2026</div>
-        </div>
-      </div>
-
-      <!-- CERTIFICATIONS -->
-      <div class="ach-block reveal">
-        <div class="ach-block-title">Certification</div>
-        <div class="cert-card">
-          <div class="cert-icon">🍃</div>
-          <div>
-            <div class="cert-title">MongoDB Data Modeling Specialist</div>
-            <div class="cert-org">MongoDB, Inc · May 2026</div>
-            <div class="cert-desc">Completed the Data Modeling Path, Advanced Schema Design, Anti-Patterns, and Indexing Optimization (I & II).</div>
+        <div class="contact-row reveal" id="contact">
+          <div class="contact-item">
+            <div class="icon">📧</div>
+            <a href="mailto:guvindu.welikala@gmail.com">guvindu.welikala@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <div class="icon">📱</div>
+            <span>+94 705 687 853</span>
+          </div>
+          <div class="contact-item">
+            <div class="icon">📍</div>
+            <span>Kottawa, Sri Lanka</span>
+          </div>
+          <div class="contact-item">
+            <div class="icon">💼</div>
+            <a href="https://www.linkedin.com/in/guvinduwelikala" target="_blank">linkedin.com/in/guvinduwelikala</a>
+          </div>
+          <div class="contact-item">
+            <div class="icon">🐙</div>
+            <a href="https://github.com/guvinduwelikala" target="_blank">github.com/guvinduwelikala</a>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- REFERENCES -->
-<section>
-  <div class="section-label reveal">07 — References</div>
-  <h2 class="section-title reveal">Who Can<br>Vouch.</h2>
-  <div class="ref-grid">
-    <div class="ref-card reveal">
-      <div class="ref-name">Sanduni Galagoda</div>
-      <div class="ref-role">Senior Software Engineer — IGT1 Lanka (Sitecore)</div>
-      <div class="ref-contact">
-        <a href="mailto:sandunigalagoda98@gmail.com">sandunigalagoda98@gmail.com</a>
-        <a href="tel:+94712396130">+94 712 396 130</a>
+  <!-- EDUCATION -->
+  <section>
+    <div class="section-label reveal">02 — Education</div>
+    <h2 class="section-title reveal">Academic<br>Journey.</h2>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-year">2023–2027</div>
+        <div>
+          <div class="edu-institution">Sri Lanka Institute of Information Technology (SLIIT)</div>
+          <div class="edu-degree">BSc (Hons) in Information Technology · Currently Pursuing</div>
+          <div class="edu-detail">Specializing in Information Technology. Active member and Vice Captain of the
+            Athletics team.</div>
+        </div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2021</div>
+        <div>
+          <div class="edu-institution">Dharmapala Vidyalaya Pannipitiya</div>
+          <div class="edu-degree">A/L — Technology Stream</div>
+          <div class="edu-detail">3C's in Technology stream. Selected for Bachelor's Degree in ICT at University of
+            Vavuniya (2022).</div>
+        </div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2018</div>
+        <div>
+          <div class="edu-institution">Dharmapala Vidyalaya Kottawa</div>
+          <div class="edu-degree">O/L — 5A's | 3B's | 1C</div>
+          <div class="edu-detail">Completed Dhamma school final examination. Awarded Colors for Athletics and Rugby.
+          </div>
+        </div>
       </div>
     </div>
-    <div class="ref-card reveal">
-      <div class="ref-name">Maneeshi Aththanayake</div>
-      <div class="ref-role">Site Reliability Engineer — IFS R&D International Pvt Ltd</div>
-      <div class="ref-contact">
-        <a href="mailto:maneeshi.aththanayake@ifs.com">maneeshi.aththanayake@ifs.com</a>
-        <a href="tel:+94702056220">+94 70 205 6220</a>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills-outer" id="skills">
+    <div class="section-label reveal">03 — Skills</div>
+    <h2 class="section-title reveal">The Toolkit.</h2>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Web & Programming</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">C#</span>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag">React.js</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Kotlin</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Frameworks & Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Spring Boot</span>
+          <span class="skill-tag">Express.js</span>
+          <span class="skill-tag">Tailwind CSS</span>
+          <span class="skill-tag">Bootstrap</span>
+          <span class="skill-tag">Postman</span>
+          <span class="skill-tag">Playwright</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">VS Code</span>
+          <span class="skill-tag">Android Studio</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Databases & Other</div>
+        <div class="skill-tags">
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">R Studio</span>
+          <span class="skill-tag">Jira</span>
+          <span class="skill-tag">Trello</span>
+          <span class="skill-tag">GitHub</span>
+          <span class="skill-tag">MS Office</span>
+          <span class="skill-tag">Wasatch</span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-name">Guvindu Punyajith Welikala</div>
-  <div class="footer-links">
-    <a href="mailto:guvindu.welikala@gmail.com">Email</a>
-    <a href="https://www.linkedin.com/in/guvinduwelikala" target="_blank">LinkedIn</a>
-    <a href="https://github.com/guvinduwelikala" target="_blank">GitHub</a>
-  </div>
-  <div class="footer-copy">© 2026 Guvindu Punyajith Welikala · BSc IT @ SLIIT · Sri Lanka</div>
-</footer>
+    <div style="margin-top: 3rem;">
+      <div class="section-label reveal" style="margin-bottom: 1.5rem;">Soft Skills</div>
+      <div class="soft-skills-grid">
+        <span class="soft-skill-pill reveal">Strong Problem-Solving</span>
+        <span class="soft-skill-pill reveal">Analytical Thinking</span>
+        <span class="soft-skill-pill reveal">Stakeholder Communication</span>
+        <span class="soft-skill-pill reveal">Teamwork</span>
+        <!-- <span class="soft-skill-pill reveal">QA Mindset</span> -->
+        <span class="soft-skill-pill reveal">Time Management</span>
+        <span class="soft-skill-pill reveal">Task Prioritization</span>
+        <span class="soft-skill-pill reveal">Adaptability</span>
+        <span class="soft-skill-pill reveal">Leadership</span>
+      </div>
+    </div>
+  </section>
 
-<script>
-  // Custom cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  function animateCursor() {
-    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-    requestAnimationFrame(animateCursor);
-  }
-  animateCursor();
-  document.querySelectorAll('a, button, .project-card, .stat-card, .medal-item, .skill-group').forEach(el => {
-    el.addEventListener('mouseenter', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; ring.style.width = '60px'; ring.style.height = '60px'; });
-    el.addEventListener('mouseleave', () => { cursor.style.width = '12px'; cursor.style.height = '12px'; ring.style.width = '40px'; ring.style.height = '40px'; });
-  });
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label reveal">04 — Experience</div>
+    <h2 class="section-title reveal">Where I've<br>Worked.</h2>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">Jan 2026 — Present</div>
+        <div class="timeline-company">Bluechip Technical Services</div>
+        <div class="timeline-role">System i & Network Intern</div>
+        <div class="timeline-desc">Gaining hands-on experience with IBM System i infrastructure and networking,
+          supporting enterprise-level technical operations and system administration tasks.</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot" style="background: var(--accent2); box-shadow: 0 0 15px rgba(41,82,217,0.6);"></div>
+        <div class="timeline-year">Jun 2022</div>
+        <div class="timeline-company">VN Sports Dressings</div>
+        <div class="timeline-role">Printing Technician</div>
+        <div class="timeline-desc">Handled garment and equipment printing operations using Wasatch software, ensuring
+          accurate color management and quality output for sports merchandise.</div>
+      </div>
+    </div>
+  </section>
 
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), 100);
-      }
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label reveal">05 — Projects</div>
+    <h2 class="section-title reveal">Things I've<br>Built.</h2>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-num">01</div>
+        <div class="project-title">ToneGallery Online Music Store</div>
+        <div class="project-desc">A Java-based music product catalog system featuring an admin panel, search
+          functionality, and full payment simulation. Built with a clean layered architecture.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Java</span>
+          <span class="stack-tag">SQL</span>
+          <span class="stack-tag">Bootstrap</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">02</div>
+        <div class="project-title">Finovate: Financial Tracking App</div>
+        <div class="project-desc">A mobile application to track expenses, categorize income streams, and generate
+          financial summaries — helping users gain clarity over their personal finances.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Android Studio</span>
+          <span class="stack-tag">Kotlin</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">03</div>
+        <div class="project-title">Employee Management System</div>
+        <div class="project-desc">A full-stack system for tracking employee productivity with transparent performance
+          monitoring dashboards for managers and staff alike.</div>
+        <div class="project-stack">
+          <span class="stack-tag">React</span>
+          <span class="stack-tag">Tailwind CSS</span>
+          <span class="stack-tag">Express</span>
+          <span class="stack-tag">MongoDB</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">04</div>
+        <div class="project-title">UniSport: Sports Council Management</div>
+        <div class="project-desc">A comprehensive university sports management application for reservations, schedules,
+          and e-commerce — validated by end-to-end testing with Playwright.</div>
+        <div class="project-stack">
+          <span class="stack-tag">MERN</span>
+          <span class="stack-tag">Playwright</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">05</div>
+        <div class="project-title">Facility & Equipment Management</div>
+        <div class="project-desc">A role-based campus platform to manage equipment inventory, facility reservations, and
+          support ticket workflows. Containerized with Docker for scalability.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Java</span>
+          <span class="stack-tag">React</span>
+          <span class="stack-tag">Docker</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">06</div>
+        <div class="project-title">YouTube Shorts Automation Pipeline</div>
+        <div class="project-desc">An end-to-end automation pipeline engineered to handle script generation, video
+          creation, and publication of YouTube Shorts — fully hands-free.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">YouTube API</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section class="achievements-outer" id="achievements">
+    <div class="section-label reveal">06 — Achievements</div>
+    <h2 class="section-title reveal">On the<br>Podium.</h2>
+    <div class="ach-layout">
+      <div class="medal-list">
+        <div class="medal-item reveal">
+          <div class="medal-icon">🥇</div>
+          <div class="medal-info">
+            <div class="medal-year">2025</div>
+            <div class="medal-event">Gold Medal — Hammer Throw (Open)</div>
+            <div class="medal-detail">National Sports Festival · Western Province Meet</div>
+          </div>
+        </div>
+        <div class="medal-item reveal">
+          <div class="medal-icon">🥇</div>
+          <div class="medal-info">
+            <div class="medal-year">2024</div>
+            <div class="medal-event">Gold Medal — Hammer Throw (U23)</div>
+            <div class="medal-detail">Junior National Athletic Championship</div>
+          </div>
+        </div>
+        <div class="medal-item reveal">
+          <div class="medal-icon">🥈</div>
+          <div class="medal-info">
+            <div class="medal-year">2023</div>
+            <div class="medal-event">Silver Medal — Hammer Throw (U23)</div>
+            <div class="medal-detail">Junior National Athletic Championship</div>
+          </div>
+        </div>
+        <div class="medal-item reveal">
+          <div class="medal-icon">🥈</div>
+          <div class="medal-info">
+            <div class="medal-year">2022</div>
+            <div class="medal-event">Silver Medal — Hammer Throw (U23)</div>
+            <div class="medal-detail">Junior National Athletic Championship</div>
+          </div>
+        </div>
+        <div class="medal-item reveal">
+          <div class="medal-icon">🥉</div>
+          <div class="medal-info">
+            <div class="medal-year">2024</div>
+            <div class="medal-event">Bronze Medal — Hammer Throw (Open)</div>
+            <div class="medal-detail">National Sports Festival · Western Province Meet</div>
+          </div>
+        </div>
+        <div class="medal-item reveal">
+          <div class="medal-icon">🥉</div>
+          <div class="medal-info">
+            <div class="medal-year">2019</div>
+            <div class="medal-event">Bronze Medal — Hammer Throw (U18)</div>
+            <div class="medal-detail">Junior National Athletic Championship</div>
+          </div>
+        </div>
+        <div class="medal-item reveal">
+          <div class="medal-icon">🥉</div>
+          <div class="medal-info">
+            <div class="medal-year">2019</div>
+            <div class="medal-event">Bronze Medal — Discus Throw</div>
+            <div class="medal-detail">National Youth Sports Festival</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ach-right">
+        <div class="ach-block reveal">
+          <div class="ach-block-title">University Level</div>
+          <div class="ach-item-row">Colors for Athletics — 2023, 2024, 2025</div>
+          <div class="ach-item-row">Best Player · Track & Field — 2024 & 2025</div>
+          <div class="ach-item-row">Multiple medals — Inter-University Championships</div>
+          <div class="ach-item-row">Vice Captain — SLIIT Athletics 2025</div>
+          <div class="ach-item-row">Host · SLIIT MOMENTUM 2025 inter-university championship</div>
+          <div class="ach-item-row">Host · SLIIT RELAY CARNIVAL 2026 championship</div>
+        </div>
+        <div class="ach-block reveal">
+          <div class="ach-block-title">School Level</div>
+          <div class="ach-item-row">Colors for Athletics — 2019, 2020, 2022, 2023</div>
+          <div class="ach-item-row">Colors for Rugby — 2019</div>
+          <div class="ach-item-row">Selected — National Sports Festival (Western Province)</div>
+        </div>
+        <div class="ach-block reveal">
+          <div class="ach-block-title">Current Ranking</div>
+          <div
+            style="padding: 1.5rem; background: var(--card); border: 1px solid var(--border); margin-top: 0.5rem; text-align: center;">
+            <div style="font-family:'Bebas Neue',sans-serif; font-size: 5rem; line-height:1; color: var(--accent);">
+              6<sup style="font-size:2rem;">th</sup></div>
+            <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--muted); letter-spacing:0.1em;">
+              Senior National Ranking · 2026</div>
+          </div>
+        </div>
+
+        <!-- CERTIFICATIONS -->
+        <div class="ach-block reveal">
+          <div class="ach-block-title">Certification</div>
+          <div class="cert-card">
+            <div class="cert-icon">🍃</div>
+            <div>
+              <div class="cert-title">MongoDB Data Modeling Specialist</div>
+              <div class="cert-org">MongoDB, Inc · May 2026</div>
+              <div class="cert-desc">Completed the Data Modeling Path, Advanced Schema Design, Anti-Patterns, and
+                Indexing Optimization (I & II).</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PHOTO GALLERY -->
+        <div class="ach-block reveal">
+          <div class="ach-block-title">In The Spotlight</div>
+          <div class="ach-photo-gallery">
+            <div class="ach-photo-item">
+              <img src="images/me.jpeg" alt="SLIIT Colours Award" class="ach-photo">
+              <div class="ach-photo-caption">SLIIT Colours Award 2024</div>
+            </div>
+            <div class="ach-photo-item">
+              <img src="images/WhatsApp Image 2025-11-03 at 16.44.18_943c48a3.jpg" alt="SLIIT MOMENTUM 2025" class="ach-photo">
+              <div class="ach-photo-caption">Vice Captain Speech · SLIIT MOMENTUM 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERENCES -->
+  <section>
+    <div class="section-label reveal">07 — References</div>
+    <h2 class="section-title reveal">Who Can<br>Vouch.</h2>
+    <div class="ref-grid">
+      <div class="ref-card reveal">
+        <div class="ref-name">Sanduni Galagoda</div>
+        <div class="ref-role">Senior Software Engineer — IGT1 Lanka (Sitecore)</div>
+        <div class="ref-contact">
+          <a href="mailto:sandunigalagoda98@gmail.com">sandunigalagoda98@gmail.com</a>
+          <a href="tel:+94712396130">+94 712 396 130</a>
+        </div>
+      </div>
+      <div class="ref-card reveal">
+        <div class="ref-name">Maneeshi Aththanayake</div>
+        <div class="ref-role">Site Reliability Engineer — IFS R&D International Pvt Ltd</div>
+        <div class="ref-contact">
+          <a href="mailto:maneeshi.aththanayake@ifs.com">maneeshi.aththanayake@ifs.com</a>
+          <a href="tel:+94702056220">+94 70 205 6220</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-name">Guvindu Punyajith Welikala</div>
+    <div class="footer-links">
+      <a href="mailto:guvindu.welikala@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/guvinduwelikala" target="_blank">LinkedIn</a>
+      <a href="https://github.com/guvinduwelikala" target="_blank">GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Guvindu Punyajith Welikala · BSc IT @ SLIIT · Sri Lanka</div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animateCursor() {
+      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+    document.querySelectorAll('a, button, .project-card, .stat-card, .medal-item, .skill-group').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; ring.style.width = '60px'; ring.style.height = '60px'; });
+      el.addEventListener('mouseleave', () => { cursor.style.width = '12px'; cursor.style.height = '12px'; ring.style.width = '40px'; ring.style.height = '40px'; });
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(el => observer.observe(el));
 
-  // Stagger siblings
-  document.querySelectorAll('.projects-grid, .skills-grid, .medal-list, .hero-stat-grid, .ref-grid').forEach(grid => {
-    grid.querySelectorAll('.reveal').forEach((el, i) => {
-      el.style.transitionDelay = (i * 0.1) + 's';
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), 100);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Stagger siblings
+    document.querySelectorAll('.projects-grid, .skills-grid, .medal-list, .hero-stat-grid, .ref-grid').forEach(grid => {
+      grid.querySelectorAll('.reveal').forEach((el, i) => {
+        el.style.transitionDelay = (i * 0.1) + 's';
+      });
     });
-  });
-</script>
+  </script>
 </body>
+
 </html>
